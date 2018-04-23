@@ -1,0 +1,3 @@
+/home/michal/GIT/IOS2/cmake-build-debug/CMakeFiles/edit_cache.dir
+/home/michal/GIT/IOS2/cmake-build-debug/CMakeFiles/rebuild_cache.dir
+/home/michal/GIT/IOS2/cmake-build-debug/CMakeFiles/IOS2.dir
