@@ -12,6 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b17c94cf-cdc6-4773-a587-8d9a09fc838c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/proj2" beforeDir="false" afterPath="$PROJECT_DIR$/proj2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proj2.c" beforeDir="false" afterPath="$PROJECT_DIR$/proj2.c" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -25,11 +26,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="proj2.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="proj2.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj2.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="737">
-              <caret line="353" column="41" selection-start-line="353" selection-start-column="41" selection-end-line="353" selection-end-column="41" />
+            <state relative-caret-position="1169">
+              <caret line="299" column="50" selection-start-line="299" selection-start-column="50" selection-end-line="299" selection-end-column="50" />
               <folding>
                 <element signature="e#368#386#0" expanded="true" />
               </folding>
@@ -37,9 +38,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="proj2.out" pinned="false" current-in-tab="false">
+      <file leaf-file-name="proj2.out" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/proj2.out">
-          <provider selected="true" editor-type-id="text-editor" />
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="252">
+              <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
         </entry>
       </file>
       <file leaf-file-name="Makefile" pinned="false" current-in-tab="false">
@@ -77,6 +82,10 @@
       <find>dprintf</find>
       <find>close(log_fd);</find>
       <find>fprintf</find>
+      <find>RID %d\t</find>
+      <find>&quot;%lu\t: BUS\t\t</find>
+      <find>&quot;%-10lu: BUS</find>
+      <find>&quot;%-10lu: BUS</find>
     </findStrings>
     <replaceStrings>
       <replace>bus_riders_ready_s</replace>
@@ -86,6 +95,9 @@
       <replace>fclose</replace>
       <replace>//dprintf</replace>
       <replace>fclose(log_f);</replace>
+      <replace>RID %d\t\t</replace>
+      <replace>&quot;%-10lu: BUS</replace>
+      <replace>&quot;%-10lu: BUS</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -178,12 +190,12 @@
       <option name="presentableId" value="Default" />
       <updated>1524500585521</updated>
       <workItem from="1524500588368" duration="122000" />
-      <workItem from="1524500741045" duration="37655000" />
+      <workItem from="1524500741045" duration="38681000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="37777000" />
+    <option name="totallyTimeSpent" value="38803000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="64" y="-11" width="1857" height="1092" extended-state="6" />
@@ -286,16 +298,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj2.out">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/proj2.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="737">
-          <caret line="353" column="41" selection-start-line="353" selection-start-column="41" selection-end-line="353" selection-end-column="41" />
+        <state relative-caret-position="1169">
+          <caret line="299" column="50" selection-start-line="299" selection-start-column="50" selection-end-line="299" selection-end-column="50" />
           <folding>
             <element signature="e#368#386#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj2.out">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="14" lean-forward="true" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>
