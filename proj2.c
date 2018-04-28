@@ -67,8 +67,8 @@ int return_number(char *str_number);
 inline void error_msg(char* err_string, int exit_code);
 void close_semaphores();
 void delete_shm();
-void bus(int riders, int capacity, int roundtrip, int log_fd, FILE* log_f);
-void rider_generator(int capacity, int riders, int gen_time, int log_fd, FILE* log_f);
+void bus(int riders, int capacity, int roundtrip, FILE* log_f);
+void rider_generator(int capacity, int riders, int gen_time, FILE* log_f);
 
 /*******************************************************************************************
  * MAIN
@@ -114,14 +114,6 @@ int main(int argc, char* argv[]) {
   // END Argument handling
 
   // BEGIN File handling
-#if 0
-  int log_fd;
-  log_fd = open("proj2.out", O_SYNC | O_WRONLY | O_CREAT, S_IWUSR);
-  if(log_fd == -1) {
-    fprintf(stderr,"%s\n", strerror(errno));
-    error_msg("ERROR: Output file couldn't be created.",1);
-  }
-#endif
   FILE* log_f;
   if((log_f = fopen("proj2.out", "w")) == NULL) {
     fprintf(stderr,"%s\n", strerror(errno));
@@ -129,8 +121,6 @@ int main(int argc, char* argv[]) {
   }
   setbuf(log_f,NULL);
   // END File handling
-
-  int log_fd = 1; // STDOUT
 
   // BEGIN Shared memory initialization
   if((shmid = shmget(IPC_PRIVATE, SHM_SIZE, 0644 | IPC_CREAT | IPC_EXCL | S_IRUSR | S_IWUSR)) == -1) {
@@ -166,7 +156,7 @@ int main(int argc, char* argv[]) {
 
   if(bus_pid == 0) {               // BUS PROCESS
     // BUS CODE
-    bus(r,c,abt,log_fd, log_f);
+    bus(r,c,abt,log_f);
 
   }
   else {
@@ -174,7 +164,7 @@ int main(int argc, char* argv[]) {
       // Bus fork failed
       delete_shm();       //Deleting shared memory
       close_semaphores();      //Closing all semaphores
-      close(log_fd);           //Writing changes to disk
+      fclose(log_f);           //Writing changes to disk
       error_msg("ERROR: Failed to create adult helper process.",2);
     }
   }
@@ -182,7 +172,7 @@ int main(int argc, char* argv[]) {
   rider_gen_pid = fork();
   if(rider_gen_pid == 0) {               // BUS PROCESS
     // Rider creator CODE
-    rider_generator(c, r, art, log_fd, log_f);
+    rider_generator(c, r, art, log_f);
 
   }
   else {
@@ -190,7 +180,7 @@ int main(int argc, char* argv[]) {
       // Rider creator fork failed
       delete_shm();       //Deleting shared memory
       close_semaphores();      //Closing all semaphores
-      close(log_fd);           //Writing changes to disk
+      fclose(log_f);           //Writing changes to disk
       error_msg("ERROR: Failed to create adult helper process.",2);
     }
   }
@@ -202,7 +192,7 @@ int main(int argc, char* argv[]) {
 
   delete_shm();            //Deleting shared memory
   close_semaphores();      //Closing all semaphores
-  close(log_fd);           //Writing changes to disk
+  fclose(log_f);           //Writing changes to disk
   return 0;
 }
 
@@ -247,7 +237,7 @@ void delete_shm() {
   shmctl(shmid, IPC_RMID, NULL);
 }
 
-void bus(int riders, int capacity, int roundtrip, int log_fd, FILE* log_f) {
+void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
   //Attaching shared memory
   mem_t *shmem_p = shmat(shmid, (void *)0, 0);
   if(shmem_p == (void*)(-1)) {
@@ -258,19 +248,16 @@ void bus(int riders, int capacity, int roundtrip, int log_fd, FILE* log_f) {
 
   // Bus start
   sem_wait(io_lock_s);
-  //dprintf(log_fd, "%lu\t: BUS\t: start\n", ++shmem_p->action_counter);
   fprintf(log_f, "%lu\t: BUS\t: start\n", ++shmem_p->action_counter);
   // NO POST! Evaluating while
   while(shmem_p->transported_riders != (size_t)riders) {
     sem_post(io_lock_s);
 
     sem_wait(stop_free_s); // Nobody can enter the bus stop
-    //dprintf(log_fd, "%lu\t: BUS\t: arrival\n", ++shmem_p->action_counter);
     fprintf(log_f, "%lu\t: BUS\t: arrival\n", ++shmem_p->action_counter);
     sem_wait(io_lock_s); // Manipulating shared memory and writing to log
     size_t want_to_board = shmem_p->riders_at_stop;
     if(want_to_board) { // Start boarding if there are people
-      //dprintf(log_fd, "%lu\t: BUS\t: start boarding: %lu\n", ++shmem_p->action_counter, shmem_p->riders_at_stop);
       fprintf(log_f, "%lu\t: BUS\t: start boarding: %lu\n", ++shmem_p->action_counter, shmem_p->riders_at_stop);
       sem_post(io_lock_s); // Allowing all riders to enter (rider has to be able to access the memory)
 
@@ -285,10 +272,8 @@ void bus(int riders, int capacity, int roundtrip, int log_fd, FILE* log_f) {
       sem_wait(bus_riders_ready_s); // Last rider provides this signal (based on shared memory)
 
       sem_wait(io_lock_s); // Get ready to depart
-      //dprintf(log_fd, "%lu\t: BUS\t: end boarding: %lu\n", ++shmem_p->action_counter, shmem_p->riders_at_stop);
       fprintf(log_f, "%lu\t: BUS\t: end boarding: %lu\n", ++shmem_p->action_counter, shmem_p->riders_at_stop);
     }
-    //dprintf(log_fd, "%lu\t: BUS\t: depart\n", ++shmem_p->action_counter);
     fprintf(log_f, "%lu\t: BUS\t: depart\n", ++shmem_p->action_counter);
     sem_post(io_lock_s);
     sem_post(stop_free_s);
@@ -299,7 +284,6 @@ void bus(int riders, int capacity, int roundtrip, int log_fd, FILE* log_f) {
     }
 
     sem_wait(io_lock_s);
-    //dprintf(log_fd, "%lu\t: BUS\t: end\n", ++shmem_p->action_counter);
     fprintf(log_f, "%lu\t: BUS\t: end\n", ++shmem_p->action_counter);
     sem_post(io_lock_s);
 
@@ -313,13 +297,12 @@ void bus(int riders, int capacity, int roundtrip, int log_fd, FILE* log_f) {
     sem_wait(io_lock_s);
   }
   // IO lock engaged before while evaluated to false
-  //dprintf(log_fd, "%lu\t: BUS\t: finish\n", ++shmem_p->action_counter);
   fprintf(log_f, "%lu\t: BUS\t: finish\n", ++shmem_p->action_counter);
   sem_post(io_lock_s); // Bus can end now
   exit(0);
 }
 
-void rider_generator(int capacity, int riders, int gen_time, int log_fd, FILE* log_f) {
+void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
   int status = 0;
   pid_t rider_pid, w_pid;
   for(int i = 0; i < riders; i++) {
@@ -343,13 +326,11 @@ void rider_generator(int capacity, int riders, int gen_time, int log_fd, FILE* l
 
         // Rider starting
         sem_wait(io_lock_s);       //Working with shared memory, locking other processes
-        //dprintf(log_fd, "%lu\t: RID %d\t: start\n", ++shmem_p->action_counter,i+1);
         fprintf(log_f, "%lu\t: RID %d\t: start\n", ++shmem_p->action_counter,i+1);
         sem_post(io_lock_s);
 
         sem_wait(stop_free_s);    // Wait for bus to leave / other rider to enter
         sem_wait(io_lock_s);
-        //dprintf(log_fd, "%lu\t: RID %d\t: enter: %lu\n", ++shmem_p->action_counter,i+1,++shmem_p->riders_at_stop);
         fprintf(log_f, "%lu\t: RID %d\t: enter: %lu\n", ++shmem_p->action_counter,i+1,++shmem_p->riders_at_stop);
         sem_post(stop_free_s);
         sem_post(io_lock_s);
@@ -359,7 +340,6 @@ void rider_generator(int capacity, int riders, int gen_time, int log_fd, FILE* l
         sem_wait(io_lock_s);
         shmem_p->riders_at_stop--;
         shmem_p->riders_on_bus++;
-        //dprintf(log_fd, "%lu\t: RID %d\t: boarding\n", ++shmem_p->action_counter,i+1);
         fprintf(log_f, "%lu\t: RID %d\t: boarding\n", ++shmem_p->action_counter,i+1);
         if(shmem_p->riders_on_bus == (size_t)capacity || shmem_p->riders_at_stop == 0) {
           sem_post(bus_riders_ready_s); // Will allow bus to continue
@@ -371,7 +351,6 @@ void rider_generator(int capacity, int riders, int gen_time, int log_fd, FILE* l
         sem_wait(io_lock_s);
         shmem_p->riders_on_bus--;
         shmem_p->transported_riders++;
-        //dprintf(log_fd, "%lu\t: RID %d\t: finish\n", ++shmem_p->action_counter,i+1);
         fprintf(log_f, "%lu\t: RID %d\t: finish\n", ++shmem_p->action_counter,i+1);
         if(shmem_p->riders_on_bus == 0) {
           sem_post(bus_riders_ready_s); // Will allow bus to continue
