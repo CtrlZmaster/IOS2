@@ -248,17 +248,17 @@ void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
 
   // Bus start
   sem_wait(io_lock_s);
-  fprintf(log_f, "%lu\t: BUS\t: start\n", ++shmem_p->action_counter);
+  fprintf(log_f, "%lu\t: BUS\t\t: start\n", ++shmem_p->action_counter);
   // NO POST! Evaluating while
   while(shmem_p->transported_riders != (size_t)riders) {
     sem_post(io_lock_s);
 
     sem_wait(stop_free_s); // Nobody can enter the bus stop
-    fprintf(log_f, "%lu\t: BUS\t: arrival\n", ++shmem_p->action_counter);
+    fprintf(log_f, "%lu\t: BUS\t\t: arrival\n", ++shmem_p->action_counter);
     sem_wait(io_lock_s); // Manipulating shared memory and writing to log
     size_t want_to_board = shmem_p->riders_at_stop;
     if(want_to_board) { // Start boarding if there are people
-      fprintf(log_f, "%lu\t: BUS\t: start boarding: %lu\n", ++shmem_p->action_counter, shmem_p->riders_at_stop);
+      fprintf(log_f, "%lu\t: BUS\t\t: start boarding: %lu\n", ++shmem_p->action_counter, shmem_p->riders_at_stop);
       sem_post(io_lock_s); // Allowing all riders to enter (rider has to be able to access the memory)
 
       if(want_to_board > (size_t)capacity) {
@@ -272,9 +272,9 @@ void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
       sem_wait(bus_riders_ready_s); // Last rider provides this signal (based on shared memory)
 
       sem_wait(io_lock_s); // Get ready to depart
-      fprintf(log_f, "%lu\t: BUS\t: end boarding: %lu\n", ++shmem_p->action_counter, shmem_p->riders_at_stop);
+      fprintf(log_f, "%lu\t: BUS\t\t: end boarding: %lu\n", ++shmem_p->action_counter, shmem_p->riders_at_stop);
     }
-    fprintf(log_f, "%lu\t: BUS\t: depart\n", ++shmem_p->action_counter);
+    fprintf(log_f, "%lu\t: BUS\t\t: depart\n", ++shmem_p->action_counter);
     sem_post(io_lock_s);
     sem_post(stop_free_s);
 
@@ -284,7 +284,7 @@ void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
     }
 
     sem_wait(io_lock_s);
-    fprintf(log_f, "%lu\t: BUS\t: end\n", ++shmem_p->action_counter);
+    fprintf(log_f, "%lu\t: BUS\t\t: end\n", ++shmem_p->action_counter);
     sem_post(io_lock_s);
 
     if(want_to_board !=0) { // This doesn't apply to an empty bus
@@ -297,7 +297,7 @@ void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
     sem_wait(io_lock_s);
   }
   // IO lock engaged before while evaluated to false
-  fprintf(log_f, "%lu\t: BUS\t: finish\n", ++shmem_p->action_counter);
+  fprintf(log_f, "%lu\t: BUS\t\t: finish\n", ++shmem_p->action_counter);
   sem_post(io_lock_s); // Bus can end now
   exit(0);
 }
@@ -326,12 +326,12 @@ void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
 
         // Rider starting
         sem_wait(io_lock_s);       //Working with shared memory, locking other processes
-        fprintf(log_f, "%lu\t: RID %d\t: start\n", ++shmem_p->action_counter,i+1);
+        fprintf(log_f, "%lu\t: RID %d\t\t: start\n", ++shmem_p->action_counter,i+1);
         sem_post(io_lock_s);
 
         sem_wait(stop_free_s);    // Wait for bus to leave / other rider to enter
         sem_wait(io_lock_s);
-        fprintf(log_f, "%lu\t: RID %d\t: enter: %lu\n", ++shmem_p->action_counter,i+1,++shmem_p->riders_at_stop);
+        fprintf(log_f, "%lu\t: RID %d\t\t: enter: %lu\n", ++shmem_p->action_counter,i+1,++shmem_p->riders_at_stop);
         sem_post(stop_free_s);
         sem_post(io_lock_s);
 
@@ -340,7 +340,7 @@ void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
         sem_wait(io_lock_s);
         shmem_p->riders_at_stop--;
         shmem_p->riders_on_bus++;
-        fprintf(log_f, "%lu\t: RID %d\t: boarding\n", ++shmem_p->action_counter,i+1);
+        fprintf(log_f, "%lu\t: RID %d\t\t: boarding\n", ++shmem_p->action_counter,i+1);
         if(shmem_p->riders_on_bus == (size_t)capacity || shmem_p->riders_at_stop == 0) {
           sem_post(bus_riders_ready_s); // Will allow bus to continue
         }
@@ -351,7 +351,7 @@ void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
         sem_wait(io_lock_s);
         shmem_p->riders_on_bus--;
         shmem_p->transported_riders++;
-        fprintf(log_f, "%lu\t: RID %d\t: finish\n", ++shmem_p->action_counter,i+1);
+        fprintf(log_f, "%lu\t: RID %d\t\t: finish\n", ++shmem_p->action_counter,i+1);
         if(shmem_p->riders_on_bus == 0) {
           sem_post(bus_riders_ready_s); // Will allow bus to continue
         }
