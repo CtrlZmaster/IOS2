@@ -78,7 +78,7 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="/home/michal/GIT/IOS2/main.c">
+		<Unit filename="/home/michal/GIT/IOS2/proj2.c">
 			<Option target="IOS2"/>
 		</Unit>
 		<Unit filename="/home/michal/GIT/IOS2/CMakeLists.txt">

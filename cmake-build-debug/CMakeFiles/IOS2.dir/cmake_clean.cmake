@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/IOS2.dir/main.c.o"
+  "CMakeFiles/IOS2.dir/proj2.c.o"
   "IOS2.pdb"
   "IOS2"
 )

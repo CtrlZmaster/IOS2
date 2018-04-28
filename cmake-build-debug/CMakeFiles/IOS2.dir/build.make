@@ -57,38 +57,38 @@ include CMakeFiles/IOS2.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/IOS2.dir/flags.make
 
-CMakeFiles/IOS2.dir/main.c.o: CMakeFiles/IOS2.dir/flags.make
-CMakeFiles/IOS2.dir/main.c.o: ../main.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/GIT/IOS2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/IOS2.dir/main.c.o"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IOS2.dir/main.c.o   -c /home/michal/GIT/IOS2/main.c
+CMakeFiles/IOS2.dir/proj2.c.o: CMakeFiles/IOS2.dir/flags.make
+CMakeFiles/IOS2.dir/proj2.c.o: ../proj2.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/michal/GIT/IOS2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/IOS2.dir/proj2.c.o"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles/IOS2.dir/proj2.c.o   -c /home/michal/GIT/IOS2/proj2.c
 
-CMakeFiles/IOS2.dir/main.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IOS2.dir/main.c.i"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/michal/GIT/IOS2/main.c > CMakeFiles/IOS2.dir/main.c.i
+CMakeFiles/IOS2.dir/proj2.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/IOS2.dir/proj2.c.i"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E /home/michal/GIT/IOS2/proj2.c > CMakeFiles/IOS2.dir/proj2.c.i
 
-CMakeFiles/IOS2.dir/main.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IOS2.dir/main.c.s"
-	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/michal/GIT/IOS2/main.c -o CMakeFiles/IOS2.dir/main.c.s
+CMakeFiles/IOS2.dir/proj2.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/IOS2.dir/proj2.c.s"
+	/usr/bin/cc $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S /home/michal/GIT/IOS2/proj2.c -o CMakeFiles/IOS2.dir/proj2.c.s
 
-CMakeFiles/IOS2.dir/main.c.o.requires:
+CMakeFiles/IOS2.dir/proj2.c.o.requires:
 
-.PHONY : CMakeFiles/IOS2.dir/main.c.o.requires
+.PHONY : CMakeFiles/IOS2.dir/proj2.c.o.requires
 
-CMakeFiles/IOS2.dir/main.c.o.provides: CMakeFiles/IOS2.dir/main.c.o.requires
-	$(MAKE) -f CMakeFiles/IOS2.dir/build.make CMakeFiles/IOS2.dir/main.c.o.provides.build
-.PHONY : CMakeFiles/IOS2.dir/main.c.o.provides
+CMakeFiles/IOS2.dir/proj2.c.o.provides: CMakeFiles/IOS2.dir/proj2.c.o.requires
+	$(MAKE) -f CMakeFiles/IOS2.dir/build.make CMakeFiles/IOS2.dir/proj2.c.o.provides.build
+.PHONY : CMakeFiles/IOS2.dir/proj2.c.o.provides
 
-CMakeFiles/IOS2.dir/main.c.o.provides.build: CMakeFiles/IOS2.dir/main.c.o
+CMakeFiles/IOS2.dir/proj2.c.o.provides.build: CMakeFiles/IOS2.dir/proj2.c.o
 
 
 # Object files for target IOS2
 IOS2_OBJECTS = \
-"CMakeFiles/IOS2.dir/main.c.o"
+"CMakeFiles/IOS2.dir/proj2.c.o"
 
 # External object files for target IOS2
 IOS2_EXTERNAL_OBJECTS =
 
-IOS2: CMakeFiles/IOS2.dir/main.c.o
+IOS2: CMakeFiles/IOS2.dir/proj2.c.o
 IOS2: CMakeFiles/IOS2.dir/build.make
 IOS2: CMakeFiles/IOS2.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/michal/GIT/IOS2/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable IOS2"
@@ -99,7 +99,7 @@ CMakeFiles/IOS2.dir/build: IOS2
 
 .PHONY : CMakeFiles/IOS2.dir/build
 
-CMakeFiles/IOS2.dir/requires: CMakeFiles/IOS2.dir/main.c.o.requires
+CMakeFiles/IOS2.dir/requires: CMakeFiles/IOS2.dir/proj2.c.o.requires
 
 .PHONY : CMakeFiles/IOS2.dir/requires
 

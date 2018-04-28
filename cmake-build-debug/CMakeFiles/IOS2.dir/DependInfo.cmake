@@ -4,7 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/home/michal/GIT/IOS2/main.c" "/home/michal/GIT/IOS2/cmake-build-debug/CMakeFiles/IOS2.dir/main.c.o"
+  "/home/michal/GIT/IOS2/proj2.c" "/home/michal/GIT/IOS2/cmake-build-debug/CMakeFiles/IOS2.dir/proj2.c.o"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 

@@ -123,32 +123,32 @@ IOS2/fast:
 	$(MAKE) -f CMakeFiles/IOS2.dir/build.make CMakeFiles/IOS2.dir/build
 .PHONY : IOS2/fast
 
-main.o: main.c.o
+proj2.o: proj2.c.o
 
-.PHONY : main.o
+.PHONY : proj2.o
 
 # target to build an object file
-main.c.o:
-	$(MAKE) -f CMakeFiles/IOS2.dir/build.make CMakeFiles/IOS2.dir/main.c.o
-.PHONY : main.c.o
+proj2.c.o:
+	$(MAKE) -f CMakeFiles/IOS2.dir/build.make CMakeFiles/IOS2.dir/proj2.c.o
+.PHONY : proj2.c.o
 
-main.i: main.c.i
+proj2.i: proj2.c.i
 
-.PHONY : main.i
+.PHONY : proj2.i
 
 # target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles/IOS2.dir/build.make CMakeFiles/IOS2.dir/main.c.i
-.PHONY : main.c.i
+proj2.c.i:
+	$(MAKE) -f CMakeFiles/IOS2.dir/build.make CMakeFiles/IOS2.dir/proj2.c.i
+.PHONY : proj2.c.i
 
-main.s: main.c.s
+proj2.s: proj2.c.s
 
-.PHONY : main.s
+.PHONY : proj2.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles/IOS2.dir/build.make CMakeFiles/IOS2.dir/main.c.s
-.PHONY : main.c.s
+proj2.c.s:
+	$(MAKE) -f CMakeFiles/IOS2.dir/build.make CMakeFiles/IOS2.dir/proj2.c.s
+.PHONY : proj2.c.s
 
 # Help Target
 help:
@@ -159,9 +159,9 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... IOS2"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... proj2.o"
+	@echo "... proj2.i"
+	@echo "... proj2.s"
 .PHONY : help
 
 
