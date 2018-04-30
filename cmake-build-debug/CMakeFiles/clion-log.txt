@@ -1,4 +1,4 @@
-/snap/clion/17/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/michal/GIT/IOS2
+/snap/clion/19/bin/cmake/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" /home/michal/GIT/IOS2
 -- Configuring done
 -- Generating done
 -- Build files have been written to: /home/michal/GIT/IOS2/cmake-build-debug

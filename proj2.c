@@ -75,9 +75,6 @@ void rider_generator(int capacity, int riders, int gen_time, FILE* log_f);
  * Program starts here.
  ******************************************************************************************/
 int main(int argc, char* argv[]) {
-  // Randomize
-  srand(time(0));
-
   // Eliminating delay connected to using buffers
   setbuf(stdout,NULL);
   setbuf(stderr,NULL);
@@ -98,7 +95,7 @@ int main(int argc, char* argv[]) {
   abt = return_number(argv[4]);
 
 
-  // Checking invaild values
+  // Checking invalid values
   if(r <= 0) {
     error_msg("ERROR: Invalid number of riders.",1);
   }
@@ -238,6 +235,9 @@ void delete_shm() {
 }
 
 void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
+  // Randomize
+  srand(time(0));
+
   //Attaching shared memory
   mem_t *shmem_p = shmat(shmid, (void *)0, 0);
   if(shmem_p == (void*)(-1)) {
@@ -303,6 +303,9 @@ void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
 }
 
 void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
+  // Randomize
+  srand(time(0));
+  
   int status = 0;
   pid_t rider_pid, w_pid;
   for(int i = 0; i < riders; i++) {
