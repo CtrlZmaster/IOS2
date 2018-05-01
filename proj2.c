@@ -31,7 +31,7 @@
 /*******************************************************************************************
  * DEFINES
  ******************************************************************************************/
-#define SHM_SIZE sizeof(mem_t) // mem_t is a struct
+#define SHM_SIZE sizeof(mem_t) // mem_t is a typedef'd struct
 #define SEM1 "/xpospi95_sem1"
 #define SEM2 "/xpospi95_sem2"
 #define SEM3 "/xpospi95_sem3"
@@ -159,7 +159,7 @@ int main(int argc, char* argv[]) {
   else {
     if(bus_pid < 0) {
       // Bus fork failed
-      delete_shm();       //Deleting shared memory
+      delete_shm();            //Deleting shared memory
       close_semaphores();      //Closing all semaphores
       fclose(log_f);           //Writing changes to disk
       error_msg("ERROR: Failed to create adult helper process.",2);
@@ -167,7 +167,7 @@ int main(int argc, char* argv[]) {
   }
 
   rider_gen_pid = fork();
-  if(rider_gen_pid == 0) {               // BUS PROCESS
+  if(rider_gen_pid == 0) {               // RIDER CREATOR PROCESS
     // Rider creator CODE
     rider_generator(c, r, art, log_f);
 
@@ -175,7 +175,7 @@ int main(int argc, char* argv[]) {
   else {
     if(rider_gen_pid < 0) {
       // Rider creator fork failed
-      delete_shm();       //Deleting shared memory
+      delete_shm();            //Deleting shared memory
       close_semaphores();      //Closing all semaphores
       fclose(log_f);           //Writing changes to disk
       error_msg("ERROR: Failed to create adult helper process.",2);
@@ -212,7 +212,7 @@ int return_number(char *str_number)
   }
 }
 
-// Prints the error message to stderr and ends the program specified in exit_code
+// Prints the error message to stderr and ends the program with code specified in exit_code
 void error_msg(char* err_string, int exit_code){
   fprintf(stderr, "%s\n",err_string);
   exit(exit_code);
@@ -234,9 +234,10 @@ void delete_shm() {
   shmctl(shmid, IPC_RMID, NULL);
 }
 
+// Code for the bus process
 void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
-  // Randomize
-  srand(time(NULL) * getpid());
+  // Randomize - ensuring unique seed by adding PID
+  srand(time(NULL) + getpid());
 
   //Attaching shared memory
   mem_t *shmem_p = shmat(shmid, (void *)0, 0);
@@ -280,7 +281,7 @@ void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
 
     // No driving when roundtrip lasts 0 seconds
     if(roundtrip > 0) {
-      usleep((rand() % (roundtrip+1)) * 1000);  //Miliseconds to microseconds, imitating roundtrip
+      usleep((rand() % (roundtrip+1)) * 1000);  //Milliseconds to microseconds, imitating roundtrip
     }
 
     sem_wait(io_lock_s);
@@ -302,9 +303,10 @@ void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
   exit(0);
 }
 
+// Functions generates rider processes and waits for their completion
 void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
-  // Randomize
-  srand(time(NULL) * getpid());
+  // Randomize - ensuring unique seed by adding PID
+  srand(time(NULL) + getpid());
 
   int status = 0;
   pid_t rider_pid, w_pid;
@@ -364,7 +366,7 @@ void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
     }
     // Wait before creating other rider... Or don't, you do you!
     if(gen_time > 0) {
-      usleep((rand() % (gen_time+1)) * 1000);  //Miliseconds to microseconds
+      usleep((rand() % (gen_time+1)) * 1000);  //Milliseconds to microseconds
     }
   }
   while ((w_pid = wait(&status)) > 0);
