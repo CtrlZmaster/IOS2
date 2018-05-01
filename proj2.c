@@ -236,7 +236,7 @@ void delete_shm() {
 
 void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
   // Randomize
-  srand(time(0));
+  srand(time(NULL) * getpid());
 
   //Attaching shared memory
   mem_t *shmem_p = shmat(shmid, (void *)0, 0);
@@ -280,7 +280,7 @@ void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
 
     // No driving when roundtrip lasts 0 seconds
     if(roundtrip > 0) {
-      usleep((rand() % (roundtrip+1)) / 1000);  //Miliseconds to microseconds, imitating roundtrip
+      usleep((rand() % (roundtrip+1)) * 1000);  //Miliseconds to microseconds, imitating roundtrip
     }
 
     sem_wait(io_lock_s);
@@ -304,8 +304,8 @@ void bus(int riders, int capacity, int roundtrip, FILE* log_f) {
 
 void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
   // Randomize
-  srand(time(0));
-  
+  srand(time(NULL) * getpid());
+
   int status = 0;
   pid_t rider_pid, w_pid;
   for(int i = 0; i < riders; i++) {
@@ -364,7 +364,7 @@ void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
     }
     // Wait before creating other rider... Or don't, you do you!
     if(gen_time > 0) {
-      usleep((rand() % (gen_time+1)) / 1000);  //Miliseconds to microseconds, imitating roundtrip
+      usleep((rand() % (gen_time+1)) * 1000);  //Miliseconds to microseconds, imitating roundtrip
     }
   }
   while ((w_pid = wait(&status)) > 0);

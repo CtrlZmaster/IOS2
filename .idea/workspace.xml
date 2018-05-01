@@ -11,7 +11,10 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="b17c94cf-cdc6-4773-a587-8d9a09fc838c" name="Default" comment="" />
+    <list default="true" id="b17c94cf-cdc6-4773-a587-8d9a09fc838c" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/proj2" beforeDir="false" afterPath="$PROJECT_DIR$/proj2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj2.c" beforeDir="false" afterPath="$PROJECT_DIR$/proj2.c" afterDir="false" />
+    </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,8 +29,8 @@
       <file leaf-file-name="proj2.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj2.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5526">
-              <caret line="307" column="2" selection-start-line="307" selection-start-column="2" selection-end-line="307" selection-end-column="2" />
+            <state relative-caret-position="297">
+              <caret line="306" column="29" selection-start-line="306" selection-start-column="29" selection-end-line="306" selection-end-column="29" />
               <folding>
                 <element signature="e#368#386#0" expanded="true" />
               </folding>
@@ -82,7 +85,8 @@
       <find>RID %d\t</find>
       <find>&quot;%lu\t: BUS\t\t</find>
       <find>&quot;%-10lu: BUS</find>
-      <find>&quot;%-10lu: BUS</find>
+      <find>usleep</find>
+      <find>srand</find>
     </findStrings>
     <replaceStrings>
       <replace>bus_riders_ready_s</replace>
@@ -93,7 +97,6 @@
       <replace>//dprintf</replace>
       <replace>fclose(log_f);</replace>
       <replace>RID %d\t\t</replace>
-      <replace>&quot;%-10lu: BUS</replace>
       <replace>&quot;%-10lu: BUS</replace>
     </replaceStrings>
   </component>
@@ -189,12 +192,12 @@
       <workItem from="1524500588368" duration="122000" />
       <workItem from="1524500741045" duration="39456000" />
       <workItem from="1525055221148" duration="32000" />
-      <workItem from="1525116001522" duration="827000" />
+      <workItem from="1525116001522" duration="2016000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="40437000" />
+    <option name="totallyTimeSpent" value="41626000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -309,16 +312,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IOS17/Makefile" />
-    <entry file="file://$PROJECT_DIR$/proj2.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5526">
-          <caret line="307" column="2" selection-start-line="307" selection-start-column="2" selection-end-line="307" selection-end-column="2" />
-          <folding>
-            <element signature="e#368#386#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IOS17/proj2-old.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="856">
@@ -334,6 +327,16 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="306">
           <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/proj2.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="297">
+          <caret line="306" column="29" selection-start-line="306" selection-start-column="29" selection-end-line="306" selection-end-column="29" />
+          <folding>
+            <element signature="e#368#386#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
