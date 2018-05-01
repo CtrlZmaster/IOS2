@@ -12,8 +12,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="b17c94cf-cdc6-4773-a587-8d9a09fc838c" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/proj2" beforeDir="false" afterPath="$PROJECT_DIR$/proj2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/proj2.c" beforeDir="false" afterPath="$PROJECT_DIR$/proj2.c" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/proj2.zip" beforeDir="false" afterPath="$PROJECT_DIR$/proj2.zip" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -26,11 +26,11 @@
   <component name="ExecutionTargetManager" SELECTED_TARGET="CMakeBuildProfile:Debug" />
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="proj2.c" pinned="false" current-in-tab="false">
+      <file leaf-file-name="proj2.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/proj2.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
-              <caret line="306" column="29" selection-start-line="306" selection-start-column="29" selection-end-line="306" selection-end-column="29" />
+            <state relative-caret-position="712">
+              <caret line="366" column="76" selection-start-line="366" selection-start-column="76" selection-end-line="366" selection-end-column="76" />
               <folding>
                 <element signature="e#368#386#0" expanded="true" />
               </folding>
@@ -38,11 +38,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="proj2.out" pinned="false" current-in-tab="true">
+      <file leaf-file-name="proj2.out" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/proj2.out">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            <state relative-caret-position="172">
+              <caret line="68" column="31" lean-forward="true" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -85,8 +85,8 @@
       <find>RID %d\t</find>
       <find>&quot;%lu\t: BUS\t\t</find>
       <find>&quot;%-10lu: BUS</find>
-      <find>usleep</find>
       <find>srand</find>
+      <find>usleep</find>
     </findStrings>
     <replaceStrings>
       <replace>bus_riders_ready_s</replace>
@@ -192,12 +192,12 @@
       <workItem from="1524500588368" duration="122000" />
       <workItem from="1524500741045" duration="39456000" />
       <workItem from="1525055221148" duration="32000" />
-      <workItem from="1525116001522" duration="2016000" />
+      <workItem from="1525116001522" duration="2330000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="41626000" />
+    <option name="totallyTimeSpent" value="41940000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1855" height="1084" extended-state="6" />
@@ -330,20 +330,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj2.c">
+    <entry file="file://$PROJECT_DIR$/proj2.out">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
-          <caret line="306" column="29" selection-start-line="306" selection-start-column="29" selection-end-line="306" selection-end-column="29" />
-          <folding>
-            <element signature="e#368#386#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="172">
+          <caret line="68" column="31" lean-forward="true" selection-start-line="68" selection-start-column="31" selection-end-line="68" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/proj2.out">
+    <entry file="file://$PROJECT_DIR$/proj2.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        <state relative-caret-position="712">
+          <caret line="366" column="76" selection-start-line="366" selection-start-column="76" selection-end-line="366" selection-end-column="76" />
+          <folding>
+            <element signature="e#368#386#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

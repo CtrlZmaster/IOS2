@@ -364,7 +364,7 @@ void rider_generator(int capacity, int riders, int gen_time, FILE* log_f) {
     }
     // Wait before creating other rider... Or don't, you do you!
     if(gen_time > 0) {
-      usleep((rand() % (gen_time+1)) * 1000);  //Miliseconds to microseconds, imitating roundtrip
+      usleep((rand() % (gen_time+1)) * 1000);  //Miliseconds to microseconds
     }
   }
   while ((w_pid = wait(&status)) > 0);
